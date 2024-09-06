@@ -15,7 +15,7 @@ export const AuthGoogleButton = ({ className }: AuthGoogleButtonProps) => {
   };
 
   return (
-    <form action={action} className={'w-full'}>
+    <form action={action} className={'w-fit'}>
       <Button
         variant="outline"
         size={'lg'}

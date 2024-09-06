@@ -9,15 +9,15 @@
   },
   {
     "name": "AUTH_GOOGLE_ID",
-    "value": "613401954047-r3031erebbidsl3c8tj1vp40jndffsg2.apps.googleusercontent.com"
+    "value": "linny-skills-auth-google-id"
   },
   {
     "name": "AUTH_GOOGLE_SECRET",
-    "value": "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"
+    "value": "linny-skills-auth-google-secret"
   },
   {
     "name": "AUTH_SECRET",
-    "value": "1hhv8rVdH+k2Uo4KZMF5vBZgXNzDhLuz+rjz2xCQJOA="
+    "value_from": "linny-skills-auth-secret"
   },
   {
     "name": "AUTH_URL",
