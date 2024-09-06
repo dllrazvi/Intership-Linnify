@@ -6,5 +6,6 @@ export type EmailData = {
 };
 
 export enum EmailTemplate {
-  TEST_TEMPLATE
+  TEST_TEMPLATE,
+  LOGIN_CODE
 }

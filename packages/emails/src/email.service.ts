@@ -6,7 +6,8 @@ import { EmailData, EmailTemplate } from './email.types';
 import TestEmail from './templates/test.email';
 
 const TEMPLATES = {
-  [EmailTemplate.TEST_TEMPLATE]: TestEmail
+  [EmailTemplate.TEST_TEMPLATE]: TestEmail,
+  [EmailTemplate.LOGIN_CODE]: TestEmail
 } as const;
 
 class EmailService {

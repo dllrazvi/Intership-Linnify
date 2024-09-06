@@ -12,9 +12,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@google-cloud/firestore": "^7.10.0",
     "@hookform/resolvers": "^3.9.0",
     "@hotjar/browser": "^1.0.9",
-    "@repo/db": "workspace:*",
     "@repo/emails": "workspace:*",
     "@repo/logger": "workspace:*",
     "@repo/ui": "workspace:*",

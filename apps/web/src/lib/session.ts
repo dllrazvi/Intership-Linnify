@@ -4,9 +4,9 @@ import { cache } from 'react';
 
 import { redirect } from 'next/navigation';
 
-import { auth } from '@app/auth/auth';
-import { getUser } from '@app/user/repositories/user.repository';
-import { User } from '@app/user/types/user.types';
+import { auth } from '@app/auth/auth.ts';
+import firestore from '@app/lib/firestore.ts';
+import { User } from '@app/user/types/user.types.ts';
 
 export const getCurrentUser = async (): Promise<User> => {
   const session = await auth();
@@ -24,4 +24,15 @@ export const getCurrentUser = async (): Promise<User> => {
   return user;
 };
 
-const getDatabaseUser = cache((userId: string) => getUser(userId));
+const getDatabaseUser = cache(async (userId: string) => {
+  const doc = await firestore.collection('users').doc(userId).get();
+
+  if (!doc.data()) {
+    return null;
+  }
+
+  return {
+    id: doc.id,
+    ...doc.data()
+  } as User;
+});

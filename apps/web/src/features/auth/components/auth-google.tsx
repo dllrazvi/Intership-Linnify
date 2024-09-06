@@ -1,4 +1,5 @@
 import { Button } from '@repo/ui/button';
+import { cn } from '@repo/ui/lib';
 
 import { signIn } from '@app/auth/auth';
 
@@ -7,18 +8,19 @@ type AuthGoogleButtonProps = {
 };
 
 export const AuthGoogleButton = ({ className }: AuthGoogleButtonProps) => {
+  const action = async () => {
+    'use server';
+
+    await signIn('google', { redirect: true });
+  };
+
   return (
-    <form
-      className={className}
-      action={async () => {
-        'use server';
-        await signIn('google', { redirect: true });
-      }}
-    >
+    <form action={action} className={'w-full'}>
       <Button
         variant="outline"
         size={'lg'}
-        className={'flex w-full items-center justify-center gap-2 font-semibold'}
+        type={'submit'}
+        className={cn('flex w-full items-center justify-center gap-2', className)}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

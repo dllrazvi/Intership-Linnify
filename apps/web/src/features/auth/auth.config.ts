@@ -1,14 +1,12 @@
 import { AdapterUser, NextAuthConfig, Session, User } from 'next-auth';
 import { JWT } from 'next-auth/jwt';
-import Google from 'next-auth/providers/google';
 
 const authConfig: NextAuthConfig = {
-  providers: [Google],
+  providers: [],
   pages: {
     signIn: '/auth',
     error: '/auth/error',
-    signOut: '/auth',
-    newUser: '/onboarding'
+    newUser: '/'
   },
   trustHost: true,
   session: {
@@ -51,4 +49,4 @@ const authConfig: NextAuthConfig = {
   }
 };
 
-export default authConfig satisfies NextAuthConfig;
+export default authConfig;
