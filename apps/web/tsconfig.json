@@ -1,0 +1,29 @@
+{
+  "extends": "@repo/typescript-config/next.json",
+  "include": [
+    ".eslintrc.js",
+    "next-env.d.ts",
+    "next.config.js",
+    "tailwind.config.ts",
+    "types",
+    "src",
+    "public",
+    "templates",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": ["node_modules"],
+  "compilerOptions": {
+    "typeRoots": [
+      "types/global.d.ts",
+      "types/auth.d.ts",
+    ],
+    "paths": {
+      "@app/*": ["./src/*"],
+      "@app/auth/*": ["./src/features/auth/*"],
+      "@app/user/*": ["./src/features/user/*"],
+      "@app/home/*": ["./src/features/home/*"],
+      "@app/dashboard/*": ["./src/features/dashboard/*"],
+      "@app/onboarding/*": ["./src/features/onboarding/*"],
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "@repo/db",
+  "exports": {
+    ".": "./src/client.ts"
+  },
+  "scripts": {
+    "lint": "eslint --ext .ts",
+    "type-check": "tsc --noEmit",
+    "db:format": "prisma format",
+    "db:generate": "prisma generate",
+    "db:migrate:create": "prisma migrate dev --create-only --name",
+    "db:migrate:dev": "prisma migrate deploy && prisma generate",
+    "db:migrate": "prisma migrate deploy"
+  },
+  "dependencies": {
+    "@prisma/client": "5.18.0",
+    "@prisma/migrate": "^5.18.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "22.4.2",
+    "prisma": "^5.18.0"
+  }
+}

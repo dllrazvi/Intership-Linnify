@@ -1,0 +1,17 @@
+{
+  "name": "@repo/eslint-config",
+  "private": true,
+  "files": [
+    "library.js",
+    "next.js",
+    "react.js"
+  ],
+  "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.52.0",
+    "@typescript-eslint/eslint-plugin": "^8.2.0",
+    "@typescript-eslint/parser": "^7.10.0",
+    "eslint-config-next": "^14.2.5",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-only-warn": "^1.1.0"
+  }
+}

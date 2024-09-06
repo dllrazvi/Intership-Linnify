@@ -1,0 +1,21 @@
+{
+  "name": "@app/jobs",
+  "scripts": {
+    "dev": "tsx --env-file=.env ./index.ts",
+    "build": "esbuild ./index.ts --bundle --platform=node --outfile=dist/index.js --format=cjs --minify --sourcemap --keep-names",
+    "lint": "eslint . --ext .ts",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@repo/db": "workspace:*",
+    "@repo/emails": "workspace:*",
+    "@repo/logger": "workspace:*"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "22.4.2",
+    "esbuild": "^0.23.1",
+    "tsx": "^4.17.0"
+  }
+}

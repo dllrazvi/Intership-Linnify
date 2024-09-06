@@ -1,0 +1,7 @@
+{
+  "extends": "@repo/typescript-config/next.json",
+  "include": ["src", ".eslintrc.js"],
+  "compilerOptions": {
+    "jsx": "react-jsx"
+  }
+}

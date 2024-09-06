@@ -1,0 +1,11 @@
+.next
+node_modules/
+scripts
+.npmrc
+
+Dockerfile
+
+pnpm-workspace.yaml
+pnpm-lock.yaml
+
+*.md

@@ -1,0 +1,15 @@
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+README.md
+.next
+.git
+.eslintignore
+.eslintrc
+.prettierrc
+.prettierignore
+prettier.config.js
+postcss.config.js
+
+.turbo

@@ -1,0 +1,27 @@
+{
+  "name": "@repo/emails",
+  "private": true,
+  "scripts": {
+    "dev": "email dev -p 3001 --dir src/templates",
+    "lint": "eslint . --ext .ts,.tsx",
+    "build": "tsc",
+    "type-check": "tsc --noEmit"
+  },
+  "files": ["./src"],
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@react-email/components": "^0.0.22",
+    "lodash.chunk": "^4.2.0",
+    "react-email": "^2.1.6",
+    "resend": "^3.5.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/lodash.chunk": "^4.2.9",
+    "@types/node": "^22.4.2",
+    "@types/react": "^18.3.4"
+  }
+}

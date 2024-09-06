@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #fff;
+    --foreground: #0f172a;
+
+    --border: #e7e7e7;
+    --input: #e2e8f0;
+    --ring: #94a3b8;
+    --radius: 0.5rem;
+
+    /** Primary Colors **/
+    --primary: #243839;
+    --primary-active: #3d504e;
+    --primary-light: #d3d8d3;
+    --primary-dark: #1a232b;
+    --primary-darker: #11131d;
+    --primary-foreground: #ffffff;
+
+    /** Secondary Colors **/
+    --secondary: #55b548;
+    --secondary-hover: #77bf5c;
+    --secondary-light: #cada98;
+    --secondary-dark: #3da047;
+    --secondary-darker: #205e4e;
+    --secondary-foreground: #ffffff;
+
+    /** Neutral Colors **/
+    --neutral: #d0d5dd;
+    --neutral-active: #98a2b3;
+    --neutral-light: #f2f4f7;
+    --neutral-dark: #667085;
+    --neutral-darker: #101828;
+    --neutral-foreground: #ffffff;
+
+    /** Success Colors **/
+    --success: #1f7f5c;
+    --success-foreground: #f8fafc;
+
+    /** Warning Colors **/
+    --warning: #ff9a4d;
+    --warning-foreground: #f8fafc;
+
+    --destructive: #ff0000;
+    --destructive-foreground: #f8fafc;
+
+    --muted: #F1F5F9;
+    --muted-foreground: #64748B;
+
+    --popover: #fff;
+    --popover-foreground: #1f201e;
+  }
+
+  .dark {
+    --background: 224 71% 4%;
+    --foreground: 213 31% 91%;
+
+    --muted: 223 47% 11%;
+    --muted-foreground: 215.4 16.3% 56.9%;
+
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+
+    --secondary: 216 34% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 216 34% 17%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  a {
+    @apply cursor-default md:cursor-pointer;
+  }
+
+  button:focus-visible {
+    @apply outline-none;
+  }
+
+  input[type='search']::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+  }
+
+  h1 {
+    @apply scroll-m-20 text-8xl font-bold tracking-tighter;
+  }
+
+  h2 {
+    @apply scroll-m-20 text-6xl font-bold tracking-tight transition-colors;
+  }
+
+  h3 {
+    @apply scroll-m-20 text-5xl font-bold tracking-normal;
+  }
+
+  h4 {
+    @apply scroll-m-20 text-2xl font-semibold tracking-wide sm:text-3xl md:text-4xl;
+  }
+
+  h5 {
+    @apply scroll-m-20 text-2xl font-bold tracking-normal;
+  }
+
+  h6 {
+    @apply scroll-m-20 text-xl font-semibold tracking-wide;
+  }
+
+  small {
+    @apply text-xs font-medium leading-tight tracking-widest;
+  }
+
+  .text-subtitle-1 {
+    @apply text-sm font-normal tracking-wide sm:text-base;
+  }
+
+  .text-subtitle-2 {
+    @apply text-sm font-normal leading-tight;
+  }
+
+  .text-body-1 {
+    @apply text-sm font-medium leading-snug sm:text-base;
+  }
+
+  .text-body-2 {
+    @apply text-sm font-normal;
+  }
+
+  .text-caption {
+    @apply text-xs font-medium leading-none tracking-widest;
+  }
+
+  .text-overline {
+    @apply text-2xs font-medium uppercase tracking-widest;
+  }
+
+  .scrollbar-hidden {
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-hidden::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+}
+
+::-webkit-scrollbar {
+  /* Customize the scrollbar width */
+  height: 0.5em;
+  width: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+  /* Customize the scrollbar track */
+  @layer rounded-full bg-neutral-light/25;
+}
+
+::-webkit-scrollbar-thumb {
+  /* Customize the scrollbar thumb */
+  @layer rounded-full bg-neutral-light/75;
+}
+
+/* React Day Picker*/
+.rdp-dropdown:not([multiple]) option {
+  background-color: rgb(18, 18, 18);
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}

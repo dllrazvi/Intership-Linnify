@@ -1,0 +1,39 @@
+{
+  "name": "@app/root",
+  "version": "1.0.0",
+  "packageManager": "pnpm@9.9.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "lint": "turbo lint",
+    "type-check": "turbo type-check",
+    "build": "turbo build",
+    "dev:web": "pnpm run --filter=@app/web dev",
+    "dev:jobs": "pnpm run --filter=@app/jobs dev",
+    "dev:emails": "pnpm run --filter=@repo/emails dev",
+    "db:generate": "turbo db:generate",
+    "db:migrate:create": "pnpm run --filter=@repo/db db:migrate:create",
+    "db:migrate:dev": "pnpm run --filter=@repo/db db:migrate:dev",
+    "db:migrate": "pnpm run --filter=@repo/db db:migrate",
+    "prepare": "husky install",
+    "preinstall": "npx only-allow pnpm"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "eslint": "^8.57.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.9",
+    "prettier": "^3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.6",
+    "turbo": "^2.1.0",
+    "typescript": "^5.5.4"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "prettier --write --ignore-unknown \"**/*.{ts,tsx,md}\"",
+      "pnpm run --filter=@repo/db db:format"
+    ]
+  }
+}

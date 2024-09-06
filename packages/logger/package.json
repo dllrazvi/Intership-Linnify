@@ -1,0 +1,24 @@
+{
+  "name": "@repo/logger",
+  "scripts": {
+    "lint": "eslint . --ext .ts,.tsx",
+    "type-check": "tsc --noEmit"
+  },
+  "exports": {
+    ".": "./src/logger.ts",
+    "./gcp": "./src/gcp.logger.ts"
+  },
+  "dependencies": {
+    "@google-cloud/logging": "^11.1.0",
+    "@google-cloud/logging-winston": "^6.0.0",
+    "uuid": "^10.0.0",
+    "winston": "^3.14.2"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/uuid": "^10.0.0",
+    "logform": "^2.6.0",
+    "winston-transport": "^4.7.1"
+  }
+}
