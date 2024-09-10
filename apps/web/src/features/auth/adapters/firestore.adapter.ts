@@ -7,14 +7,16 @@ import type {
   VerificationToken
 } from 'next-auth/adapters';
 
+import { UserRole } from '@app/user/types/enums/user-role.enum.ts';
+
 export function FirestoreAdapter(firestore: Firestore): Adapter {
   return {
     createUser: async (user: AdapterUser): Promise<AdapterUser> => {
       const doc = await firestore.collection('users').add({
         email: user.email,
         name: user.name,
-        emailVerified: user.emailVerified,
-        image: user.image
+        image: user.image,
+        role: UserRole.LINNIFIAN
       });
 
       return {

@@ -9,11 +9,11 @@
   },
   {
     "name": "AUTH_GOOGLE_ID",
-    "value": "linny-skills-auth-google-id"
+    "value_from": "linny-skills-auth-google-id"
   },
   {
     "name": "AUTH_GOOGLE_SECRET",
-    "value": "linny-skills-auth-google-secret"
+    "value_from": "linny-skills-auth-google-secret"
   },
   {
     "name": "AUTH_SECRET",

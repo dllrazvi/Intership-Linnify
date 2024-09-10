@@ -38,7 +38,8 @@
     "./form/switch": "./src/form/switch.control.tsx",
     "./form/textarea": "./src/form/textarea.control.tsx",
     "./lib": "./src/lib/index.ts",
-    "./hooks/toast": "./src/hooks/use-toast.ts"
+    "./hooks/toast": "./src/hooks/use-toast.ts",
+    "./icons": "./src/icons.tsx"
   },
   "scripts": {
     "lint": "eslint ./src --ext .ts,.tsx",

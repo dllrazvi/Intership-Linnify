@@ -1,5 +1,5 @@
-import { SessionUser } from '@app/auth/auth.types';
-import { User } from '@app/user/types/user.types';
+import { SessionUser } from '@app/auth/auth.types.ts';
+import { User } from '@app/user/types/user.types.ts';
 
 declare module 'next-auth' {
   /**

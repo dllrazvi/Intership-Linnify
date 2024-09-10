@@ -5,7 +5,7 @@
     "next-env.d.ts",
     "next.config.js",
     "tailwind.config.ts",
-    "types",
+    "src/types",
     "src",
     "public",
     "templates",
@@ -14,15 +14,15 @@
   "exclude": ["node_modules"],
   "compilerOptions": {
     "typeRoots": [
-      "types/global.d.ts",
-      "types/auth.d.ts",
+      "src/types/global.d.ts",
+      "src/types/auth.d.ts"
     ],
     "paths": {
-      "@app/*": ["./src/*"],
       "@app/auth/*": ["./src/features/auth/*"],
       "@app/user/*": ["./src/features/user/*"],
       "@app/home/*": ["./src/features/home/*"],
-      "@app/dashboard/*": ["./src/features/dashboard/*"]
+      "@app/dashboard/*": ["./src/features/dashboard/*"],
+      "@app/*": ["./src/*"]
     }
   }
 }
