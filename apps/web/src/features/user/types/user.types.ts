@@ -6,4 +6,5 @@ export type User = {
   email: string;
   image: string;
   role: UserRole;
+  technicalProfile: string;
 };

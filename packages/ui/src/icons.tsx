@@ -12,6 +12,7 @@ import {
   Info,
   Loader2,
   LucideProps,
+  Pencil,
   SlidersHorizontal,
   User,
   X
@@ -33,7 +34,8 @@ export const Icons = {
   check: Check,
   eyeOff: EyeOff,
   user: User,
-  // Custom Icon
+  edit: Pencil,
+  trash: X,
   gitHub: ({ ...props }: LucideProps) => (
     <svg
       aria-hidden="true"

@@ -13,7 +13,7 @@ const nextConfig = {
       // Till Google Gax fix the request issue
       config.resolve.fallback = { request: false };
     }
-    
+
     return config;
   },
   headers() {
@@ -28,7 +28,15 @@ const nextConfig = {
         ]
       }
     ];
-  }
+  },
+
+  // Add the images domain configuration here
+  images: {
+    domains: ['lh3.googleusercontent.com']
+  },
+
+  // Optional: Enable React strict mode
+  reactStrictMode: true
 };
 
 module.exports = nextConfig;

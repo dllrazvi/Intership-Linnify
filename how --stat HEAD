@@ -1,0 +1,327 @@
+[33mcommit 594549086de3e23322a24443d0499114af46c893[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/view-users[m[33m)[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Fri Sep 13 17:22:41 2024 +0300
+
+    Changes on User-Role, columnhelper, main, Button, Image
+
+ apps/web/src/app/(home)/users/page.tsx                   | 12 [32m+++++[m[31m-------[m
+ apps/web/src/features/user/types/enums/user-role.enum.ts |  3 [32m+[m[31m--[m
+ 2 files changed, 6 insertions(+), 9 deletions(-)
+
+[33mcommit 5909fb198968c83a384aab4a1eb9cf191f58a8c5[m[33m ([m[1;31morigin/feature/view-users[m[33m)[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Fri Sep 13 16:51:16 2024 +0300
+
+    create users page
+
+ apps/web/next.config.js                              | 13 [32m++++++++[m[31m-----[m
+ apps/web/src/app/{ => (home)}/users/page.tsx         | 10 [32m+[m[31m---------[m
+ .../employees/components/Employees-Table.tsx         | 20 [32m+++++++++++[m[31m---------[m
+ .../src/features/user/types/enums/user-role.enum.ts  |  9 [32m++++++++[m[31m-[m
+ packages/ui/src/icons.tsx                            |  6 [32m+++[m[31m---[m
+ 5 files changed, 31 insertions(+), 27 deletions(-)
+
+[33mcommit c5d9e5649c9d63862fcce48e0d29b4997e796ab8[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Fri Sep 13 14:40:12 2024 +0300
+
+    create users page
+
+ apps/web/next.config.js                            |   7 [32m+[m[31m-[m
+ apps/web/src/app/users/page.tsx                    |   6 [32m+[m[31m-[m
+ .../employees/components/Employees-Table.tsx       | 120 [32m+++++++++++[m[31m----------[m
+ apps/web/src/features/home/components/home-nav.tsx |  32 [32m+++[m[31m---[m
+ packages/ui/src/icons.tsx                          |   4 [32m+[m[31m-[m
+ 5 files changed, 92 insertions(+), 77 deletions(-)
+
+[33mcommit eea4b12548a414f02c86ad5b14ded8433d02c23f[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Fri Sep 13 10:50:02 2024 +0300
+
+    create users page
+
+ apps/web/src/lib/session.ts | 8 [32m++++[m[31m----[m
+ packages/ui/src/icons.tsx   | 1 [31m-[m
+ 2 files changed, 4 insertions(+), 5 deletions(-)
+
+[33mcommit 85c4d228e62d932083e1d11933afa8ba1c3b501e[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Fri Sep 13 10:45:20 2024 +0300
+
+    create users page
+
+ apps/web/src/app/(home)/page.tsx                   | 5 [32m+[m[31m----[m
+ apps/web/src/features/home/components/home-nav.tsx | 8 [32m++[m[31m------[m
+ apps/web/src/lib/session.ts                        | 3 [32m+[m[31m--[m
+ packages/ui/src/icons.tsx                          | 7 [32m++[m[31m-----[m
+ 4 files changed, 6 insertions(+), 17 deletions(-)
+
+[33mcommit 61bf8c80578d9b080c0f312b242e3002dd41c813[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Fri Sep 13 10:37:54 2024 +0300
+
+    create users page
+
+ apps/web/src/app/users/page.tsx                    | 37 [31m----------------------[m
+ .../employees/components/Employees-Table.tsx       |  2 [31m--[m
+ 2 files changed, 39 deletions(-)
+
+[33mcommit 787af25827905ebc2fb82bc0f52acb04b6f56390[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Fri Sep 13 10:17:24 2024 +0300
+
+    create users page
+
+ apps/web/src/app/(home)/page.tsx                   |  5 [32m+[m[31m-[m
+ apps/web/src/app/users/page.tsx                    | 69 [32m+++++++++++++++++++[m
+ .../employees/components/Employees-Table.tsx       | 78 [32m++++++++++++++++++++++[m
+ apps/web/src/features/home/components/home-nav.tsx | 36 [32m+++++[m[31m-----[m
+ apps/web/src/lib/session.ts                        | 11 [32m+[m[31m--[m
+ packages/ui/src/icons.tsx                          |  6 [32m+[m[31m-[m
+ 6 files changed, 178 insertions(+), 27 deletions(-)
+
+[33mcommit 08779df14f9df5eab613250f92a6d9812059ab19[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/develop[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Bianca Mateiu <biancamateiu@Biancas-MacBook-Pro.local>
+Date:   Tue Sep 10 11:22:42 2024 +0300
+
+    feat: add data table component
+
+ apps/web/package.json                              |   2 [32m+[m
+ apps/web/src/components/data-table.tsx             | 252 [32m+++++++++++++++++++++[m
+ .../features/auth/adapters/firestore.adapter.ts    |   6 [32m+[m[31m-[m
+ .../src/features/user/converters/user.converter.ts |  28 [32m+++[m
+ .../web/src/features/user/services/user.service.ts |   9 [32m+[m
+ .../features/user/types/enums/user-role.enum.ts    |   4 [32m+[m
+ apps/web/src/features/user/types/user.types.ts     |   3 [32m+[m
+ apps/web/{ => src}/types/auth.d.ts                 |   4 [32m+[m[31m-[m
+ apps/web/src/types/enums/data-table.enum.ts        |   3 [32m+[m
+ apps/web/{ => src}/types/global.d.ts               |   0
+ apps/web/tsconfig.json                             |  10 [32m+[m[31m-[m
+ infra/environments/testing/api.environment.tpl     |   4 [32m+[m[31m-[m
+ packages/ui/package.json                           |   3 [32m+[m[31m-[m
+ packages/ui/src/icons.tsx                          |  54 [32m+++++[m
+ pnpm-lock.yaml                                     |  25 [32m++[m
+ 15 files changed, 395 insertions(+), 12 deletions(-)
+
+[33mcommit 2fb052c2cf7c78d28d68f6257d55b92da096a5dd[m
+Author: Bianca Mateiu <biancamateiu@Biancas-MacBook-Pro.local>
+Date:   Fri Sep 6 22:24:59 2024 +0300
+
+    feat: setup login
+
+ apps/web/public/images/auth-background.webp        | Bin [31m99056[m -> [32m0[m bytes
+ apps/web/public/images/login-background.webp       | Bin [31m0[m -> [32m44476[m bytes
+ apps/web/src/app/auth/page.tsx                     |  54 [32m+++++++++[m[31m------------[m
+ .../src/features/auth/components/auth-google.tsx   |   2 [32m+[m[31m-[m
+ infra/environments/testing/api.environment.tpl     |   6 [32m+[m[31m--[m
+ packages/config-tailwind/styles.css                |  11 [32m+++[m[31m--[m
+ 6 files changed, 34 insertions(+), 39 deletions(-)
+
+[33mcommit 1077e9e4b700427e2c659ee8693736ba7cceabb1[m
+Author: Bianca Mateiu <biancamateiu@Biancas-MacBook-Pro.local>
+Date:   Fri Sep 6 21:59:31 2024 +0300
+
+    feat: setup web app and infractructure
+
+ apps/web/package.json                              |   2 [32m+[m[31m-[m
+ apps/web/src/app/(home)/layout.tsx                 |   6 [31m-[m
+ apps/web/src/app/auth/error/loading.tsx            |   3 [32m+[m
+ apps/web/src/app/onboarding/page.tsx               |  21 [31m---[m
+ .../features/auth/adapters/firestore.adapter.ts    | 197 [32m+++++++++++++++++++++[m
+ .../src/features/auth/adapters/prisma.adapter.ts   | 132 [31m--------------[m
+ apps/web/src/features/auth/auth.config.ts          |   8 [32m+[m[31m-[m
+ apps/web/src/features/auth/auth.ts                 |  12 [32m+[m[31m-[m
+ .../src/features/auth/components/auth-email.tsx    |  40 [32m+++++[m
+ .../src/features/auth/components/auth-facebook.tsx |  40 [32m++[m[31m---[m
+ .../src/features/auth/components/auth-google.tsx   |  18 [32m+[m[31m-[m
+ .../src/features/auth/providers/email.provider.ts  |  24 [32m+++[m
+ apps/web/src/features/auth/schemas/auth.schema.ts  |  17 [32m++[m
+ .../onboarding/components/onboarding-intro.tsx     |  25 [31m---[m
+ .../user/actions/user-onboarding.actions.ts        |  23 [31m---[m
+ .../features/user/repositories/user.repository.ts  |  20 [31m---[m
+ apps/web/src/features/user/types/user.types.ts     |   9 [32m+[m[31m-[m
+ apps/web/src/lib/firestore.ts                      |   9 [32m+[m
+ apps/web/src/lib/session.ts                        |  19 [32m+[m[31m-[m
+ apps/web/tsconfig.json                             |   3 [32m+[m[31m-[m
+ infra/.terraform.lock.hcl                          |  42 [32m+++++[m
+ infra/certificate-manager/main.tf                  |  69 [31m--------[m
+ infra/certificate-manager/output.tf                |   4 [31m-[m
+ infra/certificate-manager/variables.tf             |  10 [31m--[m
+ infra/cloud-runs.tf                                |  27 [32m+++[m
+ infra/environments/testing/api.environment.tpl     |  16 [32m++[m
+ infra/environments/testing/backend.config          |   4 [32m+[m[31m-[m
+ infra/environments/testing/testing.tfvars          |  12 [32m+[m[31m-[m
+ infra/load-balancer/main.tf                        | 155 [31m----------------[m
+ infra/load-balancer/variables.tf                   |  42 [31m-----[m
+ infra/main.tf                                      |  22 [32m+++[m
+ infra/repositories.tf                              |   8 [32m+[m
+ infra/service-accounts.tf                          |  18 [32m++[m
+ infra/variables.tf                                 |  24 [32m+++[m
+ packages/emails/src/email.service.ts               |   3 [32m+[m[31m-[m
+ packages/emails/src/email.types.ts                 |   3 [32m+[m[31m-[m
+ pnpm-lock.yaml                                     |  26 [32m++[m[31m-[m
+ 37 files changed, 549 insertions(+), 564 deletions(-)
+
+[33mcommit a04e89e3a788013cc0d4da5830ca526238a52de8[m
+Author: Bianca Mateiu <159009451+biancamateiu@users.noreply.github.com>
+Date:   Fri Sep 6 14:45:03 2024 +0300
+
+    Initial commit
+
+ .dockeringore                                      |    15 [32m+[m
+ .gitignore                                         |    59 [32m+[m
+ .husky/pre-commit                                  |     1 [32m+[m
+ .npmrc                                             |     4 [32m+[m
+ .prettierignore                                    |    11 [32m+[m
+ Makefile                                           |    20 [32m+[m
+ apps/jobs/.eslintrc.js                             |     8 [32m+[m
+ apps/jobs/Dockerfile                               |    11 [32m+[m
+ apps/jobs/index.ts                                 |    22 [32m+[m
+ apps/jobs/package.json                             |    21 [32m+[m
+ apps/jobs/src/config/env.config.ts                 |     9 [32m+[m
+ apps/jobs/src/logger/index.ts                      |    30 [32m+[m
+ apps/jobs/src/test.job.ts                          |     3 [32m+[m
+ apps/jobs/tsconfig.json                            |    10 [32m+[m
+ apps/web/.env.example                              |    15 [32m+[m
+ apps/web/.eslintrc.js                              |     9 [32m+[m
+ apps/web/Dockerfile                                |    20 [32m+[m
+ apps/web/README.md                                 |    36 [32m+[m
+ apps/web/next.config.js                            |    34 [32m+[m
+ apps/web/package.json                              |    42 [32m+[m
+ apps/web/postcss.config.mjs                        |     8 [32m+[m
+ apps/web/public/images/auth-background.webp        |   Bin [31m0[m -> [32m99056[m bytes
+ apps/web/public/logo/logo.png                      |   Bin [31m0[m -> [32m17070[m bytes
+ apps/web/src/app/(home)/layout.tsx                 |    27 [32m+[m
+ apps/web/src/app/(home)/loading.tsx                |    13 [32m+[m
+ apps/web/src/app/(home)/page.tsx                   |    38 [32m+[m
+ apps/web/src/app/api/auth/[...nextauth]/route.ts   |     3 [32m+[m
+ apps/web/src/app/auth/error/page.tsx               |    34 [32m+[m
+ apps/web/src/app/auth/page.tsx                     |    53 [32m+[m
+ apps/web/src/app/favicon.ico                       |   Bin [31m0[m -> [32m15406[m bytes
+ apps/web/src/app/icon.png                          |   Bin [31m0[m -> [32m473[m bytes
+ apps/web/src/app/layout.tsx                        |    47 [32m+[m
+ apps/web/src/app/onboarding/page.tsx               |    21 [32m+[m
+ apps/web/src/config/client.config.ts               |    53 [32m+[m
+ apps/web/src/config/env.config.ts                  |   117 [32m+[m
+ apps/web/src/core/logger/index.ts                  |    37 [32m+[m
+ .../src/features/auth/adapters/prisma.adapter.ts   |   132 [32m+[m
+ apps/web/src/features/auth/auth.config.ts          |    54 [32m+[m
+ apps/web/src/features/auth/auth.ts                 |    12 [32m+[m
+ apps/web/src/features/auth/auth.types.ts           |     6 [32m+[m
+ .../src/features/auth/components/auth-facebook.tsx |    37 [32m+[m
+ .../src/features/auth/components/auth-google.tsx   |    51 [32m+[m
+ apps/web/src/features/home/components/home-nav.tsx |    40 [32m+[m
+ .../onboarding/components/onboarding-intro.tsx     |    25 [32m+[m
+ .../user/actions/user-onboarding.actions.ts        |    23 [32m+[m
+ .../web/src/features/user/components/user-menu.tsx |    69 [32m+[m
+ .../src/features/user/providers/user.provider.tsx  |    39 [32m+[m
+ .../features/user/repositories/user.repository.ts  |    20 [32m+[m
+ apps/web/src/features/user/types/user.types.ts     |     3 [32m+[m
+ apps/web/src/features/user/utils/user.utils.ts     |    15 [32m+[m
+ apps/web/src/hooks/use-action.hook.ts              |    43 [32m+[m
+ apps/web/src/hooks/use-copy-to-clipboard.ts        |    31 [32m+[m
+ apps/web/src/hooks/use-enter-submit.tsx            |    17 [32m+[m
+ apps/web/src/integrations/facebook/index.tsx       |    67 [32m+[m
+ apps/web/src/integrations/google-ads/index.tsx     |    42 [32m+[m
+ .../src/integrations/google-analytics/index.tsx    |    86 [32m+[m
+ .../src/integrations/google-tag-manager/index.tsx  |   101 [32m+[m
+ apps/web/src/integrations/hotjar/index.ts          |    50 [32m+[m
+ apps/web/src/lib/session.ts                        |    27 [32m+[m
+ apps/web/src/middleware.ts                         |    41 [32m+[m
+ apps/web/src/providers/app.provider.tsx            |    28 [32m+[m
+ apps/web/src/providers/global.provider.tsx         |    21 [32m+[m
+ apps/web/src/providers/query.provider.tsx          |    24 [32m+[m
+ apps/web/src/utils/validation.utils.ts             |    19 [32m+[m
+ apps/web/tailwind.config.ts                        |    13 [32m+[m
+ apps/web/tsconfig.json                             |    29 [32m+[m
+ apps/web/turbo.json                                |    11 [32m+[m
+ apps/web/types/auth.d.ts                           |    23 [32m+[m
+ apps/web/types/global.d.ts                         |     1 [32m+[m
+ docker-compose.yml                                 |    16 [32m+[m
+ infra/certificate-manager/main.tf                  |    69 [32m+[m
+ infra/certificate-manager/output.tf                |     4 [32m+[m
+ infra/certificate-manager/variables.tf             |    10 [32m+[m
+ infra/environments/testing/api.environment.tpl     |    10 [32m+[m
+ infra/environments/testing/backend.config          |     2 [32m+[m
+ infra/environments/testing/testing.tfvars          |     3 [32m+[m
+ infra/load-balancer/main.tf                        |   155 [32m+[m
+ infra/load-balancer/variables.tf                   |    42 [32m+[m
+ package.json                                       |    39 [32m+[m
+ packages/config-eslint/library.js                  |    30 [32m+[m
+ packages/config-eslint/next.js                     |    25 [32m+[m
+ packages/config-eslint/package.json                |    17 [32m+[m
+ packages/config-eslint/react.js                    |    43 [32m+[m
+ packages/config-tailwind/package.json              |    17 [32m+[m
+ packages/config-tailwind/styles.css                |   203 [32m+[m
+ packages/config-tailwind/tailwind.config.ts        |   115 [32m+[m
+ packages/config-tailwind/tsconfig.json             |     7 [32m+[m
+ packages/config-typescript/base.json               |    24 [32m+[m
+ packages/config-typescript/next.json               |    25 [32m+[m
+ packages/config-typescript/package.json            |     9 [32m+[m
+ packages/config-typescript/react-library.json      |    12 [32m+[m
+ packages/db/.eslintrc.js                           |     8 [32m+[m
+ packages/db/package.json                           |    25 [32m+[m
+ .../migrations/20240718123245_init/migration.sql   |    49 [32m+[m
+ packages/db/prisma/migrations/migration_lock.toml  |     3 [32m+[m
+ packages/db/prisma/schema.prisma                   |    53 [32m+[m
+ packages/db/src/client.ts                          |    19 [32m+[m
+ packages/db/tsconfig.json                          |     5 [32m+[m
+ packages/emails/.eslintrc.js                       |    12 [32m+[m
+ packages/emails/README.md                          |    26 [32m+[m
+ packages/emails/package.json                       |    27 [32m+[m
+ packages/emails/src/email.service.ts               |    91 [32m+[m
+ packages/emails/src/email.types.ts                 |    10 [32m+[m
+ packages/emails/src/index.ts                       |     2 [32m+[m
+ packages/emails/src/templates/test.email.tsx       |    47 [32m+[m
+ packages/emails/tsconfig.json                      |     7 [32m+[m
+ packages/logger/.eslintrc.js                       |    12 [32m+[m
+ packages/logger/package.json                       |    24 [32m+[m
+ packages/logger/src/gcp.logger.ts                  |    59 [32m+[m
+ packages/logger/src/logger.ts                      |    64 [32m+[m
+ packages/logger/tsconfig.json                      |     4 [32m+[m
+ packages/ui/.eslintrc.js                           |    12 [32m+[m
+ packages/ui/package.json                           |    87 [32m+[m
+ packages/ui/src/accordion.tsx                      |    57 [32m+[m
+ packages/ui/src/alert-dialog.tsx                   |   123 [32m+[m
+ packages/ui/src/alert.tsx                          |    54 [32m+[m
+ packages/ui/src/avatar.tsx                         |    49 [32m+[m
+ packages/ui/src/badge.tsx                          |    34 [32m+[m
+ packages/ui/src/button.tsx                         |    51 [32m+[m
+ packages/ui/src/calendar.tsx                       |    67 [32m+[m
+ packages/ui/src/card.tsx                           |    56 [32m+[m
+ packages/ui/src/checkbox.tsx                       |    29 [32m+[m
+ packages/ui/src/date-picker.tsx                    |   117 [32m+[m
+ packages/ui/src/dialog.tsx                         |   128 [32m+[m
+ packages/ui/src/dropdown-menu.tsx                  |   188 [32m+[m
+ packages/ui/src/form.tsx                           |   168 [32m+[m
+ packages/ui/src/form/checkbox.control.tsx          |    51 [32m+[m
+ packages/ui/src/form/date-picker.control.tsx       |    65 [32m+[m
+ packages/ui/src/form/input-file.control.tsx        |    56 [32m+[m
+ packages/ui/src/form/input.control.tsx             |    56 [32m+[m
+ packages/ui/src/form/radio-group.control.tsx       |    83 [32m+[m
+ packages/ui/src/form/swtich.control.tsx            |    46 [32m+[m
+ packages/ui/src/form/textarea.control.tsx          |    50 [32m+[m
+ packages/ui/src/hooks/use-toast.ts                 |   187 [32m+[m
+ packages/ui/src/input.tsx                          |    44 [32m+[m
+ packages/ui/src/label.tsx                          |    22 [32m+[m
+ packages/ui/src/lib/index.ts                       |     9 [32m+[m
+ packages/ui/src/popover.tsx                        |    32 [32m+[m
+ packages/ui/src/progress.tsx                       |    26 [32m+[m
+ packages/ui/src/radio-group.tsx                    |    39 [32m+[m
+ packages/ui/src/select.tsx                         |   121 [32m+[m
+ packages/ui/src/separator.tsx                      |    27 [32m+[m
+ packages/ui/src/skeleton.tsx                       |     7 [32m+[m
+ packages/ui/src/slider.tsx                         |    40 [32m+[m
+ packages/ui/src/switch.tsx                         |    30 [32m+[m
+ packages/ui/src/table.tsx                          |    94 [32m+[m
+ packages/ui/src/tabs.tsx                           |    56 [32m+[m
+ packages/ui/src/textarea.tsx                       |    23 [32m+[m
+ packages/ui/src/toast.tsx                          |   123 [32m+[m
+ packages/ui/src/toaster.tsx                        |    33 [32m+[m
+ packages/ui/src/tooltip.tsx                        |    31 [32m+[m
+ packages/ui/tsconfig.json                          |     7 [32m+[m
+ pnpm-lock.yaml                                     | 10293 [32m+++++++++++++++++++[m
+ pnpm-workspace.yaml                                |     3 [32m+[m
+ prettier.config.js                                 |    23 [32m+[m
+ turbo.json                                         |    25 [32m+[m
+ 156 files changed, 16377 insertions(+)
