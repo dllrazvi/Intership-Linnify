@@ -2,45 +2,30 @@
 
 import React, { useEffect, useState } from 'react';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 
 import { User } from '@app/features/user/types/user.types';
 
-import SearchBar from './employees-searchbar';
+import EmployeesSearchBar from './employees-searchbar';
 import EmployeesTable from './employees-table';
 
-type SearchBarContainerProps = {
+type EmployeesContainerProps = {
   users: User[];
 };
 
-const SearchBarContainer: React.FC<SearchBarContainerProps> = ({ users = [] }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+const EmployeesContainer: React.FC<EmployeesContainerProps> = ({ users = [] }) => {
+  const searchParams = useSearchParams();
+  const initialSearchTerm = searchParams?.get('search') || ''; // Get search term from the URL
+  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
   const [filteredUsers, setFilteredUsers] = useState(users);
 
-  const searchParams = useSearchParams();
-  const router = useRouter();
-
-  useEffect(() => {
-    const termFromUrl = searchParams.get('search') || '';
-    setSearchTerm(termFromUrl);
-  }, [searchParams]);
-
+  // Filter users based on the search term
   useEffect(() => {
     const filtered = users.filter((user) =>
       user.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredUsers(filtered);
   }, [searchTerm, users]);
-
-  const handleSearch = (term: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    if (term) {
-      params.set('search', term);
-    } else {
-      params.delete('search');
-    }
-    router.push(`?${params.toString()}`);
-  };
 
   return (
     <div>
@@ -52,7 +37,7 @@ const SearchBarContainer: React.FC<SearchBarContainerProps> = ({ users = [] }) =
           </span>
         </h1>
 
-        <SearchBar onSearch={handleSearch} />
+        <EmployeesSearchBar onSearch={setSearchTerm} />
       </div>
 
       <EmployeesTable users={filteredUsers} />
@@ -60,4 +45,4 @@ const SearchBarContainer: React.FC<SearchBarContainerProps> = ({ users = [] }) =
   );
 };
 
-export default SearchBarContainer;
+export default EmployeesContainer;

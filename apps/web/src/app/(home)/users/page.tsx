@@ -1,4 +1,4 @@
-import SearchBarContainer from '@app/features/employees/components/employees-container';
+import EmployeesContainer from '@app/features/employees/components/employees-container';
 import { getAllUsers } from '@app/features/user/services/user.service';
 
 export default async function Page() {
@@ -6,7 +6,7 @@ export default async function Page() {
 
   return (
     <main className="flex min-h-screen flex-col p-8">
-      <SearchBarContainer users={users || []} />
+      <EmployeesContainer users={users || []} />
     </main>
   );
 }

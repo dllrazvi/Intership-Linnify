@@ -2,12 +2,17 @@
 
 import React, { useEffect, useState } from 'react';
 
+import { useRouter, useSearchParams } from 'next/navigation';
+
 type SearchBarProps = {
   onSearch: (searchTerm: string) => void;
 };
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+const EmployeesSearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const initialSearchTerm = searchParams?.get('search') || ''; // Get the search term from the URL if available
+  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
   useEffect(() => {
@@ -22,6 +27,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   useEffect(() => {
     onSearch(debouncedSearchTerm);
+
+    // Update the URL with the current search term
+    const params = new URLSearchParams(searchParams.toString());
+    if (debouncedSearchTerm) {
+      params.set('search', debouncedSearchTerm);
+    } else {
+      params.delete('search');
+    }
+    router.replace(`?${params.toString()}`);
   }, [debouncedSearchTerm, onSearch]);
 
   return (
@@ -37,4 +51,4 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   );
 };
 
-export default SearchBar;
+export default EmployeesSearchBar;
