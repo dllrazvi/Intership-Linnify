@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Image from 'next/image';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 import { createColumnHelper } from '@tanstack/react-table';
 
@@ -19,10 +20,53 @@ type EmployeesTableProps = {
 
 const EmployeesTable: React.FC<EmployeesTableProps> = ({ users }) => {
   const columnHelper = createColumnHelper<User>();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const sortBy = searchParams?.get('sort') || 'name';
+  const sortOrder = searchParams?.get('order') || 'asc';
+
+  const handleSort = () => {
+    const newOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('sort', 'name');
+    params.set('order', newOrder);
+    router.push(`?${params.toString()}`);
+  };
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredUsers, setFilteredUsers] = useState(users);
+
+  const sortedData = useMemo(() => {
+    const sortedUsers = [...filteredUsers].sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a.name.localeCompare(b.name);
+      } else {
+        return b.name.localeCompare(a.name);
+      }
+    });
+    return sortedUsers;
+  }, [sortOrder, filteredUsers]);
+
+  useEffect(() => {
+    const filtered = users.filter((user) =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredUsers(filtered);
+  }, [searchTerm, users]);
 
   const columns = [
     columnHelper.accessor('name', {
-      header: 'Linnifian',
+      header: () => (
+        <div className="flex cursor-pointer items-center" onClick={handleSort}>
+          Linnifian
+          {sortOrder === 'asc' ? (
+            <Icons.arrowDown className="ml-2 h-4 w-4" />
+          ) : (
+            <Icons.arrowUp className="ml-2 h-4 w-4" />
+          )}
+        </div>
+      ),
       cell: (data) => (
         <div className="flex items-center">
           <Image
@@ -71,7 +115,7 @@ const EmployeesTable: React.FC<EmployeesTableProps> = ({ users }) => {
 
   return (
     <div className="border border-gray-200 bg-white shadow-sm">
-      <DataTable columns={columns} data={users} rowId="id" />
+      <DataTable columns={columns} data={sortedData} rowId="id" />
     </div>
   );
 };
