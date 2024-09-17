@@ -15,11 +15,10 @@ type EmployeesContainerProps = {
 
 const EmployeesContainer: React.FC<EmployeesContainerProps> = ({ users = [] }) => {
   const searchParams = useSearchParams();
-  const initialSearchTerm = searchParams?.get('search') || ''; // Get search term from the URL
+  const initialSearchTerm = searchParams?.get('search') || '';
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
   const [filteredUsers, setFilteredUsers] = useState(users);
 
-  // Filter users based on the search term
   useEffect(() => {
     const filtered = users.filter((user) =>
       user.name.toLowerCase().includes(searchTerm.toLowerCase())

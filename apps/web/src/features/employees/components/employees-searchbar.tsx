@@ -11,7 +11,7 @@ type SearchBarProps = {
 const EmployeesSearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const initialSearchTerm = searchParams?.get('search') || ''; // Get the search term from the URL if available
+  const initialSearchTerm = searchParams?.get('search') || '';
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
@@ -27,8 +27,6 @@ const EmployeesSearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   useEffect(() => {
     onSearch(debouncedSearchTerm);
-
-    // Update the URL with the current search term
     const params = new URLSearchParams(searchParams.toString());
     if (debouncedSearchTerm) {
       params.set('search', debouncedSearchTerm);
