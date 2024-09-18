@@ -4,15 +4,16 @@ import React, { useEffect, useState } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
-type SearchBarProps = {
-  onSearch: (searchTerm: string) => void;
-};
+import { Input } from '@repo/ui/input';
 
-const EmployeesSearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+import { useEmployees } from './employees-context';
+
+const EmployeesSearchBar: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const initialSearchTerm = searchParams?.get('search') || '';
-  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
+  const { setSearchTerm } = useEmployees();
+  const initialSearchTerm = searchParams.get('search') || '';
+  const [searchTerm, setSearchTermState] = useState(initialSearchTerm);
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
 
   useEffect(() => {
@@ -26,24 +27,25 @@ const EmployeesSearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   }, [searchTerm]);
 
   useEffect(() => {
-    onSearch(debouncedSearchTerm);
+    setSearchTerm(debouncedSearchTerm);
     const params = new URLSearchParams(searchParams.toString());
     if (debouncedSearchTerm) {
       params.set('search', debouncedSearchTerm);
     } else {
       params.delete('search');
     }
-    router.replace(`?${params.toString()}`);
-  }, [debouncedSearchTerm, onSearch]);
+
+    router.push(`?${params.toString()}`);
+  }, [debouncedSearchTerm]);
 
   return (
     <div className="relative">
-      <input
+      <Input
         type="text"
         placeholder="🔍 Search..."
         className="shadow-xs w-72 rounded-md border border-neutral-200 p-2"
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={(e) => setSearchTermState(e.target.value)}
       />
     </div>
   );

@@ -12,58 +12,33 @@ import { Icons } from '@repo/ui/icons';
 
 import { DataTable } from '@app/components/data-table';
 import { UserRoleLabels } from '@app/features/user/types/enums/user-role.enum';
-import { User } from '@app/features/user/types/user.types';
 
-type EmployeesTableProps = {
-  users: User[];
-};
+import { useEmployees } from './employees-context';
 
-const EmployeesTable: React.FC<EmployeesTableProps> = ({ users }) => {
-  const columnHelper = createColumnHelper<User>();
-  const searchParams = useSearchParams();
+const columnHelper = createColumnHelper<User>();
+
+const EmployeesTable = () => {
   const router = useRouter();
-
-  const sortBy = searchParams?.get('sort') || 'name';
-  const sortOrder = searchParams?.get('order') || 'asc';
+  const searchParams = useSearchParams();
+  const { filteredUsers, sortOrder, setSortOrder } = useEmployees();
 
   const handleSort = () => {
-    const newOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+    const newSortOrder = sortOrder === 'name' ? '-name' : 'name';
     const params = new URLSearchParams(searchParams.toString());
-    params.set('sort', 'name');
-    params.set('order', newOrder);
+    params.set('sort', newSortOrder);
     router.push(`?${params.toString()}`);
+    setSortOrder(newSortOrder);
   };
-
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredUsers, setFilteredUsers] = useState(users);
-
-  const sortedData = useMemo(() => {
-    const sortedUsers = [...filteredUsers].sort((a, b) => {
-      if (sortOrder === 'asc') {
-        return a.name.localeCompare(b.name);
-      } else {
-        return b.name.localeCompare(a.name);
-      }
-    });
-    return sortedUsers;
-  }, [sortOrder, filteredUsers]);
-
-  useEffect(() => {
-    const filtered = users.filter((user) =>
-      user.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredUsers(filtered);
-  }, [searchTerm, users]);
 
   const columns = [
     columnHelper.accessor('name', {
       header: () => (
         <div className="flex cursor-pointer items-center" onClick={handleSort}>
           Linnifian
-          {sortOrder === 'asc' ? (
-            <Icons.arrowDown className="ml-2 h-4 w-4" />
-          ) : (
+          {sortOrder === 'name' ? (
             <Icons.arrowUp className="ml-2 h-4 w-4" />
+          ) : (
+            <Icons.arrowDown className="ml-2 h-4 w-4" />
           )}
         </div>
       ),
@@ -115,9 +90,14 @@ const EmployeesTable: React.FC<EmployeesTableProps> = ({ users }) => {
 
   return (
     <div className="border border-gray-200 bg-white shadow-sm">
-      <DataTable columns={columns} data={sortedData} rowId="id" />
+      <DataTable columns={columns} data={filteredUsers} rowId="id" />
     </div>
   );
+};
+
+EmployeesTable.UsersCount = () => {
+  const { filteredUsers } = useEmployees();
+  return filteredUsers.length;
 };
 
 export default EmployeesTable;
