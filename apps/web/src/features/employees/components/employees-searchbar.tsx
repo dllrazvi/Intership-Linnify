@@ -1,42 +1,26 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
 import { Input } from '@repo/ui/input';
 
-import { useEmployees } from './employees-context';
-
 const EmployeesSearchBar: React.FC = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { setSearchTerm } = useEmployees();
   const initialSearchTerm = searchParams.get('search') || '';
-  const [searchTerm, setSearchTermState] = useState(initialSearchTerm);
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
 
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 300);
-
-    return () => {
-      clearTimeout(handler);
-    };
-  }, [searchTerm]);
-
-  useEffect(() => {
-    setSearchTerm(debouncedSearchTerm);
+  const handleSearch = (term: string) => {
     const params = new URLSearchParams(searchParams.toString());
-    if (debouncedSearchTerm) {
-      params.set('search', debouncedSearchTerm);
+    if (term) {
+      params.set('search', term);
     } else {
       params.delete('search');
     }
-
-    router.push(`?${params.toString()}`);
-  }, [debouncedSearchTerm]);
+    router.push(`/users?${params.toString()}`);
+  };
 
   return (
     <div className="relative">
@@ -45,7 +29,8 @@ const EmployeesSearchBar: React.FC = () => {
         placeholder="🔍 Search..."
         className="shadow-xs w-72 rounded-md border border-neutral-200 p-2"
         value={searchTerm}
-        onChange={(e) => setSearchTermState(e.target.value)}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        onKeyUp={() => handleSearch(searchTerm)}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
@@ -18,22 +18,22 @@ import { useEmployees } from './employees-context';
 const columnHelper = createColumnHelper<User>();
 
 const EmployeesTable = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
   const { filteredUsers, sortOrder, setSortOrder } = useEmployees();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
-  const handleSort = () => {
+  const handleSortingChange = () => {
     const newSortOrder = sortOrder === 'name' ? '-name' : 'name';
     const params = new URLSearchParams(searchParams.toString());
     params.set('sort', newSortOrder);
-    router.push(`?${params.toString()}`);
+    router.push(`/users?${params.toString()}`);
     setSortOrder(newSortOrder);
   };
 
   const columns = [
     columnHelper.accessor('name', {
       header: () => (
-        <div className="flex cursor-pointer items-center" onClick={handleSort}>
+        <div className="flex cursor-pointer items-center" onClick={handleSortingChange}>
           Linnifian
           {sortOrder === 'name' ? (
             <Icons.arrowUp className="ml-2 h-4 w-4" />
@@ -56,12 +56,16 @@ const EmployeesTable = () => {
             <p className="text-sm text-neutral-600">{data.row.original.email}</p>
           </div>
         </div>
-      )
+      ),
+      enableSorting: true
     }),
+
     columnHelper.accessor('role', {
       header: 'Role',
-      cell: (info) => UserRoleLabels[info.getValue()]
+      cell: (info) => UserRoleLabels[info.getValue()],
+      enableSorting: false
     }),
+
     columnHelper.accessor('technicalProfile', {
       header: 'Technical Profiles',
       cell: (data) => (
@@ -71,8 +75,10 @@ const EmployeesTable = () => {
             <Icons.chevronRight className="h-4 w-4" />
           </Button>
         </div>
-      )
+      ),
+      enableSorting: false
     }),
+
     columnHelper.display({
       id: 'actions',
       cell: () => (
@@ -84,7 +90,8 @@ const EmployeesTable = () => {
             <Icons.trash className="h-4 w-4" />
           </Button>
         </div>
-      )
+      ),
+      enableSorting: false
     })
   ];
 
@@ -93,11 +100,6 @@ const EmployeesTable = () => {
       <DataTable columns={columns} data={filteredUsers} rowId="id" />
     </div>
   );
-};
-
-EmployeesTable.UsersCount = () => {
-  const { filteredUsers } = useEmployees();
-  return filteredUsers.length;
 };
 
 export default EmployeesTable;

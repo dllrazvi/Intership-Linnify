@@ -1,15 +1,15 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useMemo } from 'react';
 
 import { User } from '@app/features/user/types/user.types';
 
 type EmployeesContextType = {
   filteredUsers: User[];
   filteredCount: number;
-  setSearchTerm: (term: string) => void;
   sortOrder: string;
   setSortOrder: (order: string) => void;
+  children: React.ReactNode;
 };
 
 const EmployeesContext = createContext<EmployeesContextType | undefined>(undefined);
@@ -19,38 +19,28 @@ export const EmployeesProvider: React.FC<{
   search: string;
   sort: string;
 }> = ({ users, search, sort, children }) => {
-  const [searchTerm, setSearchTerm] = useState(search);
-  const [sortOrder, setSortOrder] = useState(sort);
-  const [filteredUsers, setFilteredUsers] = useState<User[]>(users);
+  const filteredUsers = useMemo(() => {
+    return users
+      .filter((user) => !search || user.name.toLowerCase().includes(search.toLowerCase()))
+      .sort((a, b) => {
+        if (sort === 'name') {
+          return a.name.localeCompare(b.name);
+        } else if (sort === '-name') {
+          return b.name.localeCompare(a.name);
+        }
+        return 0;
+      });
+  }, [users, search, sort]);
 
-  useEffect(() => {
-    let updatedUsers = [...users];
-
-    // Filtering logic
-    if (searchTerm) {
-      updatedUsers = updatedUsers.filter((user) =>
-        user.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-
-    // Sorting logic
-    if (sortOrder === '-name') {
-      updatedUsers = updatedUsers.sort((a, b) => b.name.localeCompare(a.name));
-    } else {
-      updatedUsers = updatedUsers.sort((a, b) => a.name.localeCompare(b.name));
-    }
-
-    setFilteredUsers(updatedUsers);
-  }, [searchTerm, sortOrder, users]);
+  const filteredCount = filteredUsers.length;
 
   return (
     <EmployeesContext.Provider
       value={{
         filteredUsers,
-        filteredCount: filteredUsers.length,
-        setSearchTerm,
-        sortOrder,
-        setSortOrder
+        filteredCount,
+        sortOrder: sort,
+        setSortOrder: () => {}
       }}
     >
       {children}
