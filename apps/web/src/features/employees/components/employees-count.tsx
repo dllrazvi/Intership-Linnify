@@ -1,8 +1,8 @@
 'use client';
 
-import { useEmployees } from './employees-context';
+import { useEmployees } from '@app/employees/context/employees.context';
 
-const UsersCount = () => {
+const EmployeesCount = () => {
   const { filteredCount } = useEmployees();
 
   return (
@@ -12,4 +12,4 @@ const UsersCount = () => {
   );
 };
 
-export default UsersCount;
+export default EmployeesCount;

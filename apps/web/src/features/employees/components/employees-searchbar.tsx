@@ -1,9 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-
 import { Input } from '@repo/ui/input';
 
 const EmployeesSearchBar: React.FC = () => {
@@ -11,6 +9,16 @@ const EmployeesSearchBar: React.FC = () => {
   const searchParams = useSearchParams();
   const initialSearchTerm = searchParams.get('search') || '';
   const [searchTerm, setSearchTerm] = useState(initialSearchTerm);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      handleSearch(searchTerm);
+    }, 300);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchTerm]);
 
   const handleSearch = (term: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -30,7 +38,6 @@ const EmployeesSearchBar: React.FC = () => {
         className="shadow-xs w-72 rounded-md border border-neutral-200 p-2"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        onKeyUp={() => handleSearch(searchTerm)}
       />
     </div>
   );

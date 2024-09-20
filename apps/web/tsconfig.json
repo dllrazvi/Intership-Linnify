@@ -22,6 +22,7 @@
       "@app/user/*": ["./src/features/user/*"],
       "@app/home/*": ["./src/features/home/*"],
       "@app/dashboard/*": ["./src/features/dashboard/*"],
+      "@app/employees/*": ["./src/features/employees/*"],
       "@app/*": ["./src/*"]
     }
   }

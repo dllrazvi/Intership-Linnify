@@ -1,28 +1,30 @@
-import { EmployeesProvider } from '@app/features/employees/components/employees-context';
-import UsersCount from '@app/features/employees/components/employees-count';
-import EmployeesSearchBar from '@app/features/employees/components/employees-searchbar';
-import EmployeesTable from '@app/features/employees/components/employees-table';
-import { querySchema } from '@app/features/employees/schemas/query-params';
-import { getAllUsers } from '@app/features/user/services/user.service';
+import { employeesQuerySchema } from '@app/employees/employeesQuerySchema/employees-query.schema';
+import { getAllUsers } from '@app/user/services/user.service';
+import { EmployeesProvider } from '@app/employees/context/employees.context';
+import EmployeesSearchBar from '@app/employees/components/employees-searchbar';
+import EmployeesTable from '@app/employees/components/employees-table';
+import EmployeesCount from '@app/employees/components/employees-count';
+import { z } from 'zod';
 
-export default async function Page({
-  searchParams
-}: {
-  searchParams: { search?: string; sort?: string };
-}) {
+type PageProps = {
+  searchParams: z.infer<typeof employeesQuerySchema>;
+};
+
+export default async function Page({ searchParams }: PageProps) {
   const users = await getAllUsers();
 
-  const parsedParams = querySchema.parse(searchParams);
-  const { search, sort } = parsedParams;
+  const parsedParams = employeesQuerySchema.safeParse(searchParams);
+  if (!parsedParams.success) {
+    throw new Error('Invalid search parameters');
+  }
 
+  const { search, sort } = parsedParams.data;
   return (
     <main className="flex min-h-screen flex-col p-8">
       <EmployeesProvider users={users} search={search} sort={sort}>
         <div className="mb-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">
-            Users
-            <UsersCount />
-          </h1>
+          <h1 className="text-2xl font-bold">Users</h1>
+          <EmployeesCount />
           <EmployeesSearchBar />
         </div>
         <EmployeesTable />

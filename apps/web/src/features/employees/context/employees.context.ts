@@ -1,51 +1,37 @@
 'use client';
 
 import React, { createContext, useContext, useMemo } from 'react';
-
 import { User } from '@app/features/user/types/user.types';
 
-type EmployeesContextType = {
+interface EmployeesContextProps {
   filteredUsers: User[];
   filteredCount: number;
-  sortOrder: string;
-  setSortOrder: (order: string) => void;
-  children: React.ReactNode;
-};
+}
 
-const EmployeesContext = createContext<EmployeesContextType | undefined>(undefined);
-
-export const EmployeesProvider: React.FC<{
+interface EmployeesProviderProps {
   users: User[];
   search: string;
   sort: string;
-}> = ({ users, search, sort, children }) => {
+  children: React.ReactNode;
+}
+
+const EmployeesContext = createContext<EmployeesContextProps | undefined>(undefined);
+
+export const EmployeesProvider: React.FC<EmployeesProviderProps>= ({ users, search, sort, children }) => {
+  
   const filteredUsers = useMemo(() => {
     return users
       .filter((user) => !search || user.name.toLowerCase().includes(search.toLowerCase()))
-      .sort((a, b) => {
-        if (sort === 'name') {
-          return a.name.localeCompare(b.name);
-        } else if (sort === '-name') {
-          return b.name.localeCompare(a.name);
-        }
-        return 0;
-      });
+      .sort((a, b) => (sort === 'name' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)));
   }, [users, search, sort]);
 
   const filteredCount = filteredUsers.length;
-
   return (
-    <EmployeesContext.Provider
-      value={{
-        filteredUsers,
-        filteredCount,
-        sortOrder: sort,
-        setSortOrder: () => {}
-      }}
-    >
+    <EmployeesContext.Provider value={{ filteredUsers, filteredCount }}>
       {children}
     </EmployeesContext.Provider>
   );
+  
 };
 
 export const useEmployees = () => {

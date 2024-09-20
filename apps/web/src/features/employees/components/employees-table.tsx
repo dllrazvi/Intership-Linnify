@@ -1,47 +1,33 @@
 'use client';
 
 import React from 'react';
-
 import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-
 import { createColumnHelper } from '@tanstack/react-table';
-
 import { Button } from '@repo/ui/button';
 import { Icons } from '@repo/ui/icons';
-
 import { DataTable } from '@app/components/data-table';
-import { UserRoleLabels } from '@app/features/user/types/enums/user-role.enum';
+import { UserRoleLabels } from '@app/user/types/enums/user-role.enum';
+import { useEmployees } from '@app/employees/context/employees.context';
+import { User } from '@app/user/types/user.types';
 
-import { useEmployees } from './employees-context';
-
-const columnHelper = createColumnHelper<User>();
-
-const EmployeesTable = () => {
-  const { filteredUsers, sortOrder, setSortOrder } = useEmployees();
+const EmployeesTable: React.FC = () => {
+  const { filteredUsers } = useEmployees();
   const searchParams = useSearchParams();
   const router = useRouter();
+  const columnHelper = createColumnHelper<User>();
 
   const handleSortingChange = () => {
-    const newSortOrder = sortOrder === 'name' ? '-name' : 'name';
+    const currentSort = searchParams.get('sort');
+    const newSortOrder = currentSort === 'name' ? '-name' : 'name';
     const params = new URLSearchParams(searchParams.toString());
     params.set('sort', newSortOrder);
-    router.push(`/users?${params.toString()}`);
-    setSortOrder(newSortOrder);
+    router.push(`?${params.toString()}`);
   };
 
-  const columns = [
+  const columns: ColumnDef<User, unknown>[] = [
     columnHelper.accessor('name', {
-      header: () => (
-        <div className="flex cursor-pointer items-center" onClick={handleSortingChange}>
-          Linnifian
-          {sortOrder === 'name' ? (
-            <Icons.arrowUp className="ml-2 h-4 w-4" />
-          ) : (
-            <Icons.arrowDown className="ml-2 h-4 w-4" />
-          )}
-        </div>
-      ),
+      header: 'Linnifian',
       cell: (data) => (
         <div className="flex items-center">
           <Image
@@ -57,15 +43,12 @@ const EmployeesTable = () => {
           </div>
         </div>
       ),
-      enableSorting: true
+      enableSorting: true,
     }),
-
     columnHelper.accessor('role', {
       header: 'Role',
       cell: (info) => UserRoleLabels[info.getValue()],
-      enableSorting: false
     }),
-
     columnHelper.accessor('technicalProfile', {
       header: 'Technical Profiles',
       cell: (data) => (
@@ -76,9 +59,7 @@ const EmployeesTable = () => {
           </Button>
         </div>
       ),
-      enableSorting: false
     }),
-
     columnHelper.display({
       id: 'actions',
       cell: () => (
@@ -91,8 +72,7 @@ const EmployeesTable = () => {
           </Button>
         </div>
       ),
-      enableSorting: false
-    })
+    }),
   ];
 
   return (
