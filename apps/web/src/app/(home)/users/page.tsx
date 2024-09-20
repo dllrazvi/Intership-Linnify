@@ -1,10 +1,11 @@
-import { employeesQuerySchema } from '@app/employees/employeesQuerySchema/employees-query.schema';
-import { getAllUsers } from '@app/user/services/user.service';
-import { EmployeesProvider } from '@app/employees/context/employees.context';
+import { z } from 'zod';
+
+import EmployeesCount from '@app/employees/components/employees-count';
 import EmployeesSearchBar from '@app/employees/components/employees-searchbar';
 import EmployeesTable from '@app/employees/components/employees-table';
-import EmployeesCount from '@app/employees/components/employees-count';
-import { z } from 'zod';
+import { EmployeesProvider } from '@app/employees/context/employees.context';
+import { employeesQuerySchema } from '@app/employees/employeesQuerySchema/employees-query.schema.ts';
+import { getAllUsers } from '@app/user/services/user.service';
 
 type PageProps = {
   searchParams: z.infer<typeof employeesQuerySchema>;
@@ -18,12 +19,10 @@ export default async function Page({ searchParams }: PageProps) {
     throw new Error('Invalid search parameters');
   }
 
-  const { search, sort } = parsedParams.data;
   return (
     <main className="flex min-h-screen flex-col p-8">
-      <EmployeesProvider users={users} search={search} sort={sort}>
+      <EmployeesProvider users={users} searchParams={parsedParams.data}>
         <div className="mb-4 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Users</h1>
           <EmployeesCount />
           <EmployeesSearchBar />
         </div>

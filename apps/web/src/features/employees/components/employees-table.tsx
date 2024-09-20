@@ -1,33 +1,32 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
+
 import Image from 'next/image';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { createColumnHelper } from '@tanstack/react-table';
+
+import { ColumnDef, SortingState, createColumnHelper } from '@tanstack/react-table';
+
 import { Button } from '@repo/ui/button';
 import { Icons } from '@repo/ui/icons';
+
 import { DataTable } from '@app/components/data-table';
-import { UserRoleLabels } from '@app/user/types/enums/user-role.enum';
 import { useEmployees } from '@app/employees/context/employees.context';
+import { UserRoleLabels } from '@app/user/types/enums/user-role.enum';
 import { User } from '@app/user/types/user.types';
 
 const EmployeesTable: React.FC = () => {
   const { filteredUsers } = useEmployees();
-  const searchParams = useSearchParams();
-  const router = useRouter();
   const columnHelper = createColumnHelper<User>();
 
-  const handleSortingChange = () => {
-    const currentSort = searchParams.get('sort');
-    const newSortOrder = currentSort === 'name' ? '-name' : 'name';
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('sort', newSortOrder);
-    router.push(`?${params.toString()}`);
-  };
+  const [sorting, setSorting] = useState<SortingState>([]);
 
-  const columns: ColumnDef<User, unknown>[] = [
+  const columns: ColumnDef<User, any>[] = [
     columnHelper.accessor('name', {
-      header: 'Linnifian',
+      header: () => (
+        <div className="flex items-center font-bold">
+          <span>Linnifian</span>
+        </div>
+      ),
       cell: (data) => (
         <div className="flex items-center">
           <Image
@@ -37,17 +36,17 @@ const EmployeesTable: React.FC = () => {
             height={40}
             className="rounded-full"
           />
-          <div>
-            <p>{data.getValue()}</p>
+          <div className="ml-2">
+            <p className="font-bold">{data.getValue()}</p>
             <p className="text-sm text-neutral-600">{data.row.original.email}</p>
           </div>
         </div>
       ),
-      enableSorting: true,
+      enableSorting: true
     }),
     columnHelper.accessor('role', {
       header: 'Role',
-      cell: (info) => UserRoleLabels[info.getValue()],
+      cell: (info) => UserRoleLabels[info.getValue()]
     }),
     columnHelper.accessor('technicalProfile', {
       header: 'Technical Profiles',
@@ -58,7 +57,7 @@ const EmployeesTable: React.FC = () => {
             <Icons.chevronRight className="h-4 w-4" />
           </Button>
         </div>
-      ),
+      )
     }),
     columnHelper.display({
       id: 'actions',
@@ -71,13 +70,19 @@ const EmployeesTable: React.FC = () => {
             <Icons.trash className="h-4 w-4" />
           </Button>
         </div>
-      ),
-    }),
+      )
+    })
   ];
 
   return (
     <div className="border border-gray-200 bg-white shadow-sm">
-      <DataTable columns={columns} data={filteredUsers} rowId="id" />
+      <DataTable
+        columns={columns}
+        data={filteredUsers}
+        sorting={sorting}
+        onSortingChange={setSorting}
+        rowId="id"
+      />
     </div>
   );
 };
