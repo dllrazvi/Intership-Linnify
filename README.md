@@ -18,7 +18,6 @@ The project covers **full-stack functionality**: from advanced UI components and
 - **Utilities**: Custom hooks, API routes, dynamic routing
 - **Infrastructure**: Docker, GitHub Actions, GCP (via environment configs)
 
----
 
 ##  Features
 
@@ -54,7 +53,6 @@ Located in `apps/web/src/integrations/`, the system supports:
 
 Each is modularized, allowing dynamic injection based on environment or config.
 
----
 
 ##  Learning Project Included
 
@@ -64,7 +62,6 @@ The `Nextjs Course app/` folder contains my personal learning project created wh
 - Data fetching (SSR & SSG)
 - API routes and deployments
 
----
 
 ##  My Role & Contributions
 
@@ -78,7 +75,6 @@ During the internship, I contributed to:
 
 This was part of a production-grade system used by a real company.
 
----
 
 ##  What I Learned
 
@@ -88,6 +84,5 @@ This was part of a production-grade system used by a real company.
 - Auth patterns (OAuth2, token, provider-based)
 - Working in a real Agile dev environment
 
----
 
 
