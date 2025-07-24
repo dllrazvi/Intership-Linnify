@@ -6,7 +6,6 @@ This repository contains the full codebase of a **real-world web application** d
 
 The project covers **full-stack functionality**: from advanced UI components and custom React hooks, to authentication and analytics integrations.
 
----
 
 ## Technologies Used
 
@@ -54,9 +53,6 @@ Located in `apps/web/src/integrations/`, the system supports:
 | Hotjar              | `integrations/hotjar`     |
 
 Each is modularized, allowing dynamic injection based on environment or config.
-
----
-
 
 ---
 
