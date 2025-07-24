@@ -2,6 +2,8 @@
 
 import React, { createContext, useContext, useMemo } from 'react';
 
+import { useSearchParams } from 'next/navigation';
+
 import { User } from '@app/features/user/types/user.types';
 
 interface EmployeesContextProps {
@@ -13,6 +15,7 @@ interface EmployeesProviderProps {
   users: User[];
   searchParams: {
     search?: string;
+    sort?: 'name' | '-name';
   };
   children: React.ReactNode;
 }
@@ -24,18 +27,20 @@ export const EmployeesProvider: React.FC<EmployeesProviderProps> = ({
   searchParams,
   children
 }) => {
-  const { search = '' } = searchParams;
+  const { search = '', sort = 'name' } = searchParams;
 
   const filteredUsers = useMemo(() => {
-    return users.filter(
-      (user) => !search || user.name.toLowerCase().includes(search.toLowerCase())
-    );
-  }, [users, search]);
+    return users
+      .filter((user) => !search || user.name.toLowerCase().includes(search.toLowerCase()))
+      .sort((a, b) =>
+        sort === 'name' ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+      );
+  }, [users, search, sort]);
 
   const filteredCount = filteredUsers.length;
 
   return (
-    <EmployeesContext.Provider value={{ filteredUsers, filteredCount }}>
+    <EmployeesContext.Provider value={{ filteredUsers, filteredCount, children }}>
       {children}
     </EmployeesContext.Provider>
   );

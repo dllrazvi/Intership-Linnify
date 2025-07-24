@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 
 import { ColumnDef, SortingState, createColumnHelper } from '@tanstack/react-table';
 
@@ -16,15 +17,28 @@ import { User } from '@app/user/types/user.types';
 
 const EmployeesTable: React.FC = () => {
   const { filteredUsers } = useEmployees();
-  const columnHelper = createColumnHelper<User>();
-
+  const searchParams = useSearchParams();
   const [sorting, setSorting] = useState<SortingState>([]);
+
+  const columnHelper = createColumnHelper<User>();
 
   const columns: ColumnDef<User, any>[] = [
     columnHelper.accessor('name', {
-      header: () => (
-        <div className="flex items-center font-bold">
+      header: (props) => (
+        <div
+          className="flex cursor-pointer items-center justify-between font-bold"
+          onClick={() => props.column.getToggleSortingHandler()}
+        >
           <span>Linnifian</span>
+          <div className="ml-2">
+            {props.column.getIsSorted() === 'asc' ? (
+              <Icons.arrowUp className="h-5 w-5" />
+            ) : props.column.getIsSorted() === 'desc' ? (
+              <Icons.arrowDown className="h-5 w-5" />
+            ) : (
+              <Icons.sort className="h-5 w-5" />
+            )}
+          </div>
         </div>
       ),
       cell: (data) => (
@@ -37,7 +51,7 @@ const EmployeesTable: React.FC = () => {
             className="rounded-full"
           />
           <div className="ml-2">
-            <p className="font-bold">{data.getValue()}</p>
+            <p>{data.getValue()}</p>
             <p className="text-sm text-neutral-600">{data.row.original.email}</p>
           </div>
         </div>
@@ -46,7 +60,8 @@ const EmployeesTable: React.FC = () => {
     }),
     columnHelper.accessor('role', {
       header: 'Role',
-      cell: (info) => UserRoleLabels[info.getValue()]
+      cell: (info) => UserRoleLabels[info.getValue()],
+      enableSorting: false
     }),
     columnHelper.accessor('technicalProfile', {
       header: 'Technical Profiles',
@@ -57,7 +72,8 @@ const EmployeesTable: React.FC = () => {
             <Icons.chevronRight className="h-4 w-4" />
           </Button>
         </div>
-      )
+      ),
+      enableSorting: false
     }),
     columnHelper.display({
       id: 'actions',
@@ -70,7 +86,8 @@ const EmployeesTable: React.FC = () => {
             <Icons.trash className="h-4 w-4" />
           </Button>
         </div>
-      )
+      ),
+      enableSorting: false
     })
   ];
 
@@ -79,9 +96,9 @@ const EmployeesTable: React.FC = () => {
       <DataTable
         columns={columns}
         data={filteredUsers}
+        rowId="id"
         sorting={sorting}
         onSortingChange={setSorting}
-        rowId="id"
       />
     </div>
   );

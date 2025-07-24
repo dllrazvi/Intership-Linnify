@@ -1,7 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { useRouter, useSearchParams } from 'next/navigation';
+
 import { Input } from '@repo/ui/input';
 
 const EmployeesSearchBar: React.FC = () => {

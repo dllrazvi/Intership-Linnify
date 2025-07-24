@@ -1,0 +1,87 @@
+[33mcommit caf185386851f1764960adb685ddfcaddda6cc74[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Thu Jul 24 17:34:01 2025 +0300
+
+    fix: remove hardcoded secrets from config
+
+[33mcommit 10e858c7096862876322053f08f278ae297298cf[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Fri Sep 20 12:44:03 2024 +0300
+
+    context problem solved, sorting called from data-table, sort removed from context, small changes + comments solved
+
+[33mcommit aac0038cf42831055fa7a3002a746b0cbf967290[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Fri Sep 20 10:17:03 2024 +0300
+
+    commentaries solved +context problem
+
+[33mcommit 3e9b57d2810d5c301a1158a1fcc5746db1d6dd1f[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Wed Sep 18 19:54:09 2024 +0300
+
+    Sort with data-table & memo, schema&count created and context updated, search optimization + others
+
+[33mcommit 655dcbaf8ae71390b4c3939c0642269065c0c646[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Wed Sep 18 13:03:37 2024 +0300
+
+    Context for solving container issue, parameters passed to page, zod for parsing + small changes
+
+[33mcommit 7b50dd5aa892225e1b171d80bfd4a7dc95c5a521[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Tue Sep 17 13:03:30 2024 +0300
+
+    small changes
+
+[33mcommit 7931faabe6395f18a4b45a884fa5f151136f457a[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Mon Sep 16 19:17:49 2024 +0300
+
+    filtered saved on refresh
+
+[33mcommit 5c2a0b04f9db5794b0555528cc6f85ff082b464f[m
+Author: dllrazvi <razvan.bolchis@stud.ubbcluj.ro>
+Date:   Mon Sep 16 19:04:33 2024 +0300
+
+    SearchBar and name sorting
+
+[33mcommit 5a75155118b1ff696c3f5a006477f2feae0d4675[m[33m ([m[1;31morigin/develop[m[33m)[m
+Author: Bolchis Razvan <115452771+dllrazvi@users.noreply.github.com>
+Date:   Mon Sep 16 10:53:11 2024 +0300
+
+    create users pagea (#1)
+    
+    * create users page
+    
+    * Changes on User-Role, columnhelper, main, Button, Image
+    
+    * employees-table file's name changed
+    
+    * small changes + refactor
+    
+    * UserRoleLabels integrated in all places
+
+[33mcommit 08779df14f9df5eab613250f92a6d9812059ab19[m
+Author: Bianca Mateiu <biancamateiu@Biancas-MacBook-Pro.local>
+Date:   Tue Sep 10 11:22:42 2024 +0300
+
+    feat: add data table component
+
+[33mcommit 2fb052c2cf7c78d28d68f6257d55b92da096a5dd[m
+Author: Bianca Mateiu <biancamateiu@Biancas-MacBook-Pro.local>
+Date:   Fri Sep 6 22:24:59 2024 +0300
+
+    feat: setup login
+
+[33mcommit 1077e9e4b700427e2c659ee8693736ba7cceabb1[m
+Author: Bianca Mateiu <biancamateiu@Biancas-MacBook-Pro.local>
+Date:   Fri Sep 6 21:59:31 2024 +0300
+
+    feat: setup web app and infractructure
+
+[33mcommit a04e89e3a788013cc0d4da5830ca526238a52de8[m
+Author: Bianca Mateiu <159009451+biancamateiu@users.noreply.github.com>
+Date:   Fri Sep 6 14:45:03 2024 +0300
+
+    Initial commit
